@@ -1,0 +1,22 @@
+{extend name="base/common"/}
+
+
+{block name="body"}
+
+<div id="article_list">
+</div>
+{/block}
+{block name="script"}
+<script>
+	$(document).ready(function () {
+		getLists(1)
+	})
+	var getLists= function (page) {
+		$(".get_more").remove();
+		$.get("{:url('home/article/ajaxlists')}?category={$category->id}&page="+page, function (data) {
+			$("#article_list").append(data);
+		});
+	}
+</script>
+
+{/block}

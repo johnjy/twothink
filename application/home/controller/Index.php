@@ -28,5 +28,14 @@ class Index extends Home{
 
         return $this->fetch();
     }
-
+    public function fuwu(){
+        return $this->fetch();
+    }
+    public function about(){
+        $list=\think\Db::name('document')->where('category_id',46)->find();
+        $content=\think\Db::name('document_article')->where('id',$list['id'])->find();
+        $this->assign('content',$content);
+        $this->assign('list',$list);
+        return $this->fetch();
+    }
 }

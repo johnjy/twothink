@@ -39,6 +39,24 @@ class Article extends Home {
 		// echo $category['template_lists'];
 		return $this->fetch($category['template_lists']);
 	}
+	//ajax翻页
+	public function ajaxlists(){
+		/* 分类信息 */
+		$category = $this->category();
+		/* 获取当前分类列表 */
+		$Document = new Document();
+		$list = $Document->lists($category['id'],2);
+		if(false === $list){
+			$this->error('获取列表数据失败！');
+		}
+
+		/* 模板赋值并渲染模板 */
+		$this->assign('category', $category);
+		$this->assign('list', $list);
+		// echo $category['template_lists'];
+		return $this->fetch($category['template_lists']);
+	}
+
 
 	/* 文档模型详情页 */
 	public function detail($id = 0, $p = 1){

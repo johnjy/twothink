@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:74:"D:\www\twothink\public/../application/admin/view/default/repair\index.html";i:1511677769;s:73:"D:\www\twothink\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:74:"D:\www\twothink\public/../application/admin/view/default/repair\index.html";i:1512025829;s:73:"D:\www\twothink\public/../application/admin/view/default/public\base.html";i:1496373782;}*/ ?>
 <!doctype html>
 <html>
 <head>
@@ -137,7 +137,7 @@
                         <td><?php echo $repair['address']; ?></td>
                         <td><?php echo $repair['problem']; ?></td>
                         <td><?php echo date("Y-m-d H:i:s",$repair['create_time']); ?></td>
-                        <td><?php echo $repair['status']==1?'未处理':'已处理'; ?></td>
+                        <td><?php echo $repair['status']==0?'未处理':'已处理'; ?></td>
 						<td>
 							<a title="查看" href="<?php echo url('edit?id='.$repair['id']); ?>">查看</a>
 							<!--<a href="<?php echo url('setStatus?ids='.$repair['id'].'&status='.abs(1-$repair['status'])); ?>" class="ajax-get"><?php echo show_status_op($repair['status']); ?></a>-->
@@ -150,6 +150,10 @@
 			</tbody>
 		</table>
 	</div>
+<!-- 分页 -->
+<div class="page">
+	<?php echo $_page; ?>
+</div>
 
         </div>
         <div class="cont-ft">

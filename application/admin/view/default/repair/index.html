@@ -39,7 +39,7 @@
                         <td>{$repair.address}</td>
                         <td>{$repair.problem}</td>
                         <td>{:date("Y-m-d H:i:s",$repair.create_time)}</td>
-                        <td>{:$repair.status==1?'未处理':'已处理'}</td>
+                        <td>{:$repair.status==0?'未处理':'已处理'}</td>
 						<td>
 							<a title="查看" href="{:url('edit?id='.$repair['id'])}">查看</a>
 							<!--<a href="{:url('setStatus?ids='.$repair['id'].'&status='.abs(1-$repair['status']))}" class="ajax-get">{$repair.status|show_status_op}</a>-->
@@ -53,6 +53,10 @@
 			</tbody>
 		</table>
 	</div>
+<!-- 分页 -->
+<div class="page">
+	{$_page}
+</div>
 {/block}
 
 {block name="script"}

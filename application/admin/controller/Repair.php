@@ -6,9 +6,13 @@ class Repair extends Admin{
 
     //报修列表
     public function index(){
-        $pid = input('get.pid', 0);
-        /* 获取频道列表 */
-        $list = \think\Db::name('Repair')->order('id asc')->select();
+    $page=input('page',1);
+    $number=4;//每页显示
+        //分页查询
+        $list = \think\Db::name('Repair')->paginate($number,false,array('page'=>$page));
+        //获取分页显示
+        $_page=$list->render();
+        $this->assign ( '_page', $_page );
         $this->assign('list', $list);
         return $this->fetch();
     }
@@ -24,8 +28,7 @@ class Repair extends Admin{
             if(!$validate->check($post_data)){
                 return $this->error($validate->getError());
             }
-
-           $post_data['repair_id']=uniqid();
+           $post_data['repair_id']=date('Ymd',time()).mt_rand(1,99);
             $data = $Repair->create($post_data);
             if($data){
                 $this->success('新增成功', url('index'));

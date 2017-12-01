@@ -64,6 +64,11 @@ class Document extends Model{
         $map = $this->listMap($category, $status);
         return $this->field($field)->with('picture')->where($map)->order($order)->select();
     }
+    //分页列表
+    public function page_lists($category,$num=10, $order = '`id` DESC', $status = 1, $field = true){
+        $map = $this->listMap($category, $status);
+        return $this->field($field)->with('picture')->where($map)->order($order)->paginate($num);
+    }
 
     /**
      * 计算列表总数

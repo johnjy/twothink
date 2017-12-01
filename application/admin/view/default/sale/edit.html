@@ -1,0 +1,84 @@
+{extend name="public/base" /}
+
+{block name="body"}
+	<div class="main-title">
+		<h2>
+			{$info['id']?'查看':'新增'}房源
+		</h2>
+	</div>
+	<form action="{:url()}" method="post" class="form-horizontal">
+		<div class="form-item">
+			<label class="item-label">标题<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="title" value="{$info.title|default=''}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">发布人<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="name" value="{$info.name|default=''}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">电话<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="tel" value="{$info.tel|default=''}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">售价<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="price" value="{$info.price|default=''}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">租售形式<span class="check-tips"></span></label>
+			<div class="controls">
+
+				<input type="radio"  name="sale" value="1" >出租
+				<input type="radio"  name="sale" value="2">出售
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">状态<span class="check-tips"></span></label>
+			<div class="controls">
+
+				<input type="radio"  name="status" value="1" >不发布
+				<input type="radio"  name="status" value="2">发布
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">房源描述<span class="check-tips"></span></label>
+			<div class="controls">
+				<textarea style="width: 500px ;height: 150px" name="intro" >{$info.intro|default=''}</textarea>
+				<!--<input type="text" class="text input-large" name="intro" value="{$info.problem|default=''}">-->
+			</div>
+		</div>
+		<div class="form-item">
+
+
+			<label class="item-label">房源图片<span class="check-tips"></span></label>
+			<textarea name="content">{$info.content|default=''}</textarea>
+			{:hook('adminArticleEdit', array('name'=>'content','value'=>''))}
+		</label>
+		<!--<label class="textarea">-->
+			<!--<textarea name="content">{$data[$field['name']]}</textarea>-->
+			<!--{:hook('adminArticleEdit', array('name'=>$field['name'],'value'=>$data[$field['name']]))}-->
+		<!--</label>-->
+
+
+
+
+		<div class="form-item">
+			<input type="hidden" name="id" value="{$info.id|default=''}">
+			<button class="btn submit-btn ajax-posts" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+			<button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+		</div>
+	</form>
+{/block}
+{block name="script"}
+<script type="text/javascript" charset="utf-8">
+	//导航高亮
+	highlight_subnav('{:url('index')}');
+</script>
+{/block}
